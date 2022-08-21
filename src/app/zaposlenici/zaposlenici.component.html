@@ -1,0 +1,92 @@
+<div id="header-div">
+    <p>
+      <label class="form-label">Name</label>
+      <input id="ime" class="form-control" placeholder="Person Name" [(ngModel)]="ime">
+    </p>
+    <p>
+      <label class="form-label">Surename</label>
+      <input class="form-control" placeholder="Person Last Name" [(ngModel)]="prezime">
+    </p>
+    <p>
+      <label class="form-label">Index Number</label>
+      <input class="form-control" placeholder="Index Number" [(ngModel)]="broj_indeksa">
+    </p>
+    <p>
+      <label class="form-label">Place of Birth</label>
+      <input class="form-control" placeholder="Place of Birth" [(ngModel)]="mjesto_rodjenja">
+    </p>
+    <p>
+      <label class="form-label">Date of Birth</label>
+      <input class="form-control" placeholder="Date of Birth" [(ngModel)]="datum_rodjenja">
+    </p>
+    <button class="btn btn-primary" (click)="addPerson()">Add</button>
+  </div>
+
+
+<hr>
+<p>
+  <label>Filter:   </label>
+  <input [(ngModel)]="filter">
+ <!-- <button class="btn btn-danger" (click)="filtriraj()">Filter by Name</button>  -->
+</p>
+
+<table class="table">
+  <tr>
+    <td>ID</td>
+    <td>Name</td>
+    <td>Last Name</td>
+    <td>Index Number</td>
+    <td>Place of Birth</td>
+    <td>Date of Birth</td>
+    <td>Profile Picture</td>
+    <td>Action</td>
+  </tr>
+  <tbody>
+      <tr *ngFor="let x of getPersonData()" >
+        <td>{{x.id}}</td>
+        <td>{{x.ime}}</td>
+        <td>{{x.prezime}}</td>
+        <td>{{x.broj_indeksa}}</td>
+        <td>{{x.opstina_rodjenja!=null?x.opstina_rodjenja.description:""}}</td>
+        <td>{{x.datum_rodjenja}}</td>
+        <td><img class="profilna-slika" src="{{x.slika_studenta}}"></td>
+        <td>
+          <button class="btn btn-primary" (click)="setChosen(x)">Details</button>
+          <button class="btn btn-danger" (click)="deletePerson(x)">Delete</button>
+          <button class="btn btn-warning" (click)="setPicture(x)">Add Pic</button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+  <div id="footer-div" *ngIf="odabranaOsoba != null">
+    <p>
+      <label class="form-label">Name</label>
+      <input class="form-control" placeholder="Person Name" [(ngModel)]="odabranaOsoba.ime">
+    </p>
+    <p>
+      <label class="form-label">Surename</label>
+      <input class="form-control" placeholder="Person Last Name" [(ngModel)]="odabranaOsoba.prezime">
+    </p>
+    <p>
+      <label class="form-label">Index Number</label>
+      <input class="form-control" placeholder="Index Number" [(ngModel)]="odabranaOsoba.broj_indeksa">
+    </p>
+    <p>
+      <label class="form-label">Place of Birth</label>
+      <input class="form-control" placeholder="Place of Birth" [(ngModel)]="odabranaOsoba.opstina_rodjenja.description">
+    </p>
+    <p>
+      <label class="form-label">Date of Birth</label>
+      <input class="form-control" placeholder="Date of Birth" [(ngModel)]="odabranaOsoba.datum_rodjenja">
+    </p>
+    <button class="btn btn-warning" (click)="updatePerson()">Save Edit</button>
+  </div>
+
+  <div *ngIf="pro_pic != null">
+    <label class="form-label">Profile Picture</label>
+    <img src="{{pro_pic}}" class="slika-detail">
+    <input class="form-control" style="width: 300px" type="file" (change)="setdata($event)">
+    <button (click)="updatePicture()" class="btn btn-danger">Update Picture</button>
+  </div>
+
+
