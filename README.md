@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+<--------------------------------------------------------------------->
+This is just a few of basic functions that i learned to make in Angular
+
+By default it gets the data from the server and shows it in the table.
+
+I made it possible to post, edit or delete data from the server.
